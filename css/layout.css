@@ -1,0 +1,17 @@
+header {
+  font-family: "Just Me Again Down Here", cursive;
+  background-color: #9ad4d6;
+  padding: 0.01rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+/* font-family: 'Judson',
+serif;
+font-family: 'Just Me Again Down Here',
+cursive; */
