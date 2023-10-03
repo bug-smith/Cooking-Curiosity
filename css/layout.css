@@ -1,14 +1,98 @@
-header {
-  font-family: "Just Me Again Down Here", cursive;
-  background-color: #9ad4d6;
-  padding: 0.01rem;
-  display: flex;
-  flex-direction: column;
+.hidden {
+  display: none !important;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .row {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.column-full,
+.column-third {
+  width: 100%;
+  padding: 0 0.75rem;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .column-full,
+  .column-half {
+    padding: 0 0.75rem;
+  }
+
+  .column-third {
+    width: 33.333%;
+  }
+
+  .space-around-comp {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .display-column {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.margin-r05 {
+  margin-right: 0.5rem;
+}
+
+.margin-t0 {
+  margin: 0.5rem;
+}
+
+.hh-font16 {
+  font-size: 16px;
+}
+
+.hh-font32 {
+  font-size: 32px;
+}
+
+.hh-font30 {
+  font-size: 30px;
+}
+
+.space-around {
+  display: flex;
+  justify-content: space-around;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.j-center {
+  display: flex;
+  justify-content: center;
+}
+
+.a-start {
+  display: flex;
+  align-items: flex-start;
+}
+
+.flex {
+  display: flex;
 }
 
 /* font-family: 'Judson',

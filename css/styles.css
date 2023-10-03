@@ -1,4 +1,94 @@
 #chef-photo {
   width: 66px;
   height: 59px;
+  margin-right: 1.7rem;
+  margin-left: 0.2rem;
+}
+
+#header-favorite-btn {
+  text-decoration: underline 1px;
+}
+
+header {
+  font-family: "Just Me Again Down Here", cursive;
+  background-color: #9ad4d6;
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+  height: 14%;
+  border-bottom: #012a36;
+}
+
+#header-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cooking-c {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.cooking-speaks {
+  font-family: Judson, serif;
+  width: 150px;
+  margin-top: 0;
+}
+
+#breakfast-row,
+#dinner-row,
+#lunch-row,
+#breakfast-ingredients,
+#breakfast-instructions,
+#lunch-instructions,
+#lunch-ingredients {
+  background-color: #6c6ea0;
+  border-radius: 5px;
+  margin-top: 5%;
+  color: white;
+}
+
+#breakfast-row,
+#lunch-row,
+#dinner-row {
+  margin-right: 20px;
+}
+
+.fa-heart {
+  height: 17px;
+  width: 19px;
+  color: white;
+}
+
+#preview-b,
+#preview-l,
+#preview-d {
+  margin-top: 5px;
+  height: 20px;
+  font-size: 18px;
+}
+
+#favorite-header {
+  height: 40px;
+}
+
+img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+#breakfast-column,
+#lunch-column {
+  display: flex;
+  justify-content: center;
+  padding-top: 3%;
+}
+
+#breakfast-ingredients,
+#breakfast-instructions,
+#lunch-instructions,
+#lunch-ingredients {
+  display: flex;
+  justify-content: center;
 }

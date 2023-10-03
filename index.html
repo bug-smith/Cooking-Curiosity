@@ -14,21 +14,44 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
-    <div>
-      <p id="header-favorite-btn">Favorites</p>
+  <header class="container">
+    <div class="end margin-r05" id="favorite-header">
+      <p id="header-favorite-btn" class="margin-t0 hh-font30">Favorites</p>
     </div>
     <div class="row">
       <div>
         <img src="images/chef.png" alt="chef-photo" id="chef-photo">
       </div>
-      <div>
-        <h1>Cooking Curiosity</h1>
-        <p>Where food Curiosity speaks with answers</p>
+      <div id="header-title">
+        <h1 class="cooking-c">Cooking Curiosity</h1>
+        <p class="cooking-speaks">Where food Curiosity speaks with answers</p>
       </div>
     </div>
   </header>
-  <main>
+  <main class="container">
+    <div class="flex column-full" id="breakfast-row">
+      <div class="column-third a-start"><p class="preview-b">Preview</p></div>
+      <div class="column-third j-center"><p>BREAKFAST</p></div>
+      <div class="column-third"><i class="fa-regular fa-heart"></i></div>
+    </div>
+    <div class="flex column-full" id="lunch-row">
+      <div class="column-third">
+        <p id="preview-l">Preview</p>
+      </div>
+      <div class="column-third j-center">
+        <p>LUNCH</p>
+      </div>
+      <div class="column-third"><i class="fa-regular fa-heart"></i></div>
+    </div>
+    <div class="flex column-full" id="dinner-row">
+      <div class="column-third">
+        <p class="preview-d">Preview</p>
+      </div>
+      <div class="column-third j-center">
+        <p>DINNER</p>
+      </div>
+      <div class="column-third"><i class="fa-regular fa-heart"></i></div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
