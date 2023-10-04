@@ -1,4 +1,4 @@
-// const $main = document.querySelector('main');
+
 const $breakfastRow = document.querySelector('#breakfast-row');
 const $lunchRow = document.querySelector('#lunch-row');
 const $dinnerRow = document.querySelector('#dinner-row');
@@ -17,7 +17,6 @@ const $dinnerImage = document.querySelector('#dinner-image');
 const $breakfastText = document.querySelector('#breakfast-text');
 const $lunchText = document.querySelector('#lunch-text');
 const $dinnerText = document.querySelector('#dinner-text');
-// data.breakfastEntries.push({breakfastImage: xhrB.recipes.image, breakfastIngredients: )
 
 const obj = {
   breakfastData: [],
@@ -28,83 +27,53 @@ const obj = {
   dinnerPreviewCounter: 0
 };
 
+document.addEventListener('DOMContentLoaded', function () {
+  getBreakfastData();
+  getLunchData();
+  getDinnerData();
+});
+
 function getBreakfastData() {
-  const xhrB = new XMLHttpRequest();
-  xhrB.open('GET', 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?tags=breakfast&number=1');
-  xhrB.responseType = 'json';
-  xhrB.setRequestHeader('X-RapidAPI-Key', 'a40bcbcd8bmshfdf8d28517d81c7p1adb7ajsnc0278fb5d147');
-  xhrB.setRequestHeader('X-RapidAPI-Host', 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com');
-  xhrB.addEventListener('load', function () {
-    obj.breakfastData = xhrB.response.recipes[0];
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?tags=breakfast&number=1');
+  xhr.responseType = 'json';
+  xhr.setRequestHeader('X-RapidAPI-Key', 'a40bcbcd8bmshfdf8d28517d81c7p1adb7ajsnc0278fb5d147');
+  xhr.setRequestHeader('X-RapidAPI-Host', 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com');
+  xhr.addEventListener('load', function () {
+    obj.breakfastData = xhr.response.recipes[0];
     $breakfastImage.setAttribute('src', obj.breakfastData.image);
     breakfastIngredientsLoop();
   });
-  xhrB.send();
+  xhr.send();
 }
 
 function getLunchData() {
-  const xhrL = new XMLHttpRequest();
-  xhrL.open('GET', 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?tags=lunch&number=1');
-  xhrL.responseType = 'json';
-  xhrL.setRequestHeader('X-RapidAPI-Key', 'a40bcbcd8bmshfdf8d28517d81c7p1adb7ajsnc0278fb5d147');
-  xhrL.setRequestHeader('X-RapidAPI-Host', 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com');
-  xhrL.addEventListener('load', function () {
-    obj.lunchData = xhrL.response.recipes[0];
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?tags=lunch&number=1');
+  xhr.responseType = 'json';
+  xhr.setRequestHeader('X-RapidAPI-Key', 'a40bcbcd8bmshfdf8d28517d81c7p1adb7ajsnc0278fb5d147');
+  xhr.setRequestHeader('X-RapidAPI-Host', 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com');
+  xhr.addEventListener('load', function () {
+    obj.lunchData = xhr.response.recipes[0];
     $lunchImage.setAttribute('src', obj.lunchData.image);
     lunchIngredientsLoop();
   });
-  xhrL.send();
+  xhr.send();
 }
 
 function getDinnerData() {
-  const xhrD = new XMLHttpRequest();
-  xhrD.open('GET', 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?tags=dinner&number=1');
-  xhrD.responseType = 'json';
-  xhrD.setRequestHeader('X-RapidAPI-Key', 'a40bcbcd8bmshfdf8d28517d81c7p1adb7ajsnc0278fb5d147');
-  xhrD.setRequestHeader('X-RapidAPI-Host', 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com');
-  xhrD.addEventListener('load', function () {
-    obj.dinnerData = xhrD.response.recipes[0];
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?tags=dinner&number=1');
+  xhr.responseType = 'json';
+  xhr.setRequestHeader('X-RapidAPI-Key', 'a40bcbcd8bmshfdf8d28517d81c7p1adb7ajsnc0278fb5d147');
+  xhr.setRequestHeader('X-RapidAPI-Host', 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com');
+  xhr.addEventListener('load', function () {
+    obj.dinnerData = xhr.response.recipes[0];
     $dinnerImage.setAttribute('src', obj.dinnerData.image);
     dinnerIngredientsLoop();
   });
-  xhrD.send();
+  xhr.send();
 }
-
-// document.addEventListener('DONTContentLoaded', function () {
-//   getBreakfastData();
-//   getLunchData();
-//   getDinnerData();
-// });
-// function createBreakfastDom (){
-//   // <div class="column-full">
-//   //   <div>
-//   //     <img src="https://insanelygoodrecipes.com/wp-content/uploads/2020/12/Chocolate-Chip-Pancakes.png" alt="breakfast photo" />
-//   //   </div>
-//   //   <div id="breakfast-ingredients">
-//   //     <p>INGREDIENTS</p>
-//   //   </div>
-//   //   <div>
-//   //     <ul>
-//   //       <li></li>
-//   //       <li></li>
-//   //       <li></li>
-//   //       <li></li>
-//   //       <li></li>
-//   //     </ul>
-//   //   </div>
-//   //   <div id="breakfast-instructions">
-//   //     <p>COOKING INSTRUCTIONS</p>
-//   //   </div>
-//   //   <div>
-//   //     <p id="breakfast-info">Toast the sesame seeds, about 350 degrees in the oven for about 10-15 minutes. Keep an eye on them to make sure they
-//   //       don't burn.Mix together the following to make the dressing: olive oil, vinegar, sugar, salt, pepper, green onions,
-//   //       chicken flavor packet from the ramen noodle package.Crush the ramen noodles until there are no large chunks (small
-//   //       chunks are OK).Combine the shredded cabbage and ramen noodles in a large bowl.Pour the dressing on the cabbage/noodle
-//   //       mixture and toss to coat.Top with the toasted sesame seeds and almonds.</p>
-//   //   </div>
-//   // </div>
-
-// }
 
 $previewB.addEventListener('click', function (event) {
   $breakfastColumn.classList.toggle('hidden');
@@ -141,10 +110,6 @@ $previewD.addEventListener('click', function (event) {
   if (obj.dinnerPreviewCounter % 2 === 0) { $dinnerText.textContent = 'DINNER'; } else { $dinnerText.textContent = obj.dinnerData.title; }
 });
 
-// function renderImage(
-
-// )
-
 function breakfastIngredientsLoop() {
   for (let i = 0; i < obj.breakfastData.extendedIngredients.length; i++) {
     const $li = document.createElement('li');
@@ -168,7 +133,3 @@ function dinnerIngredientsLoop() {
     $dinnerUl.appendChild($li);
   }
 }
-
-getBreakfastData();
-getLunchData();
-getDinnerData();
