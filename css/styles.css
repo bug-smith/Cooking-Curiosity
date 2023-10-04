@@ -55,12 +55,6 @@ header {
   margin-right: 20px;
 }
 
-.fa-heart {
-  height: 17px;
-  width: 19px;
-  color: white;
-}
-
 #preview-b,
 #preview-l,
 #preview-d {
@@ -75,20 +69,36 @@ header {
 
 img {
   width: 100%;
-  border-radius: 5px;
-}
-
-#breakfast-column,
-#lunch-column {
-  display: flex;
-  justify-content: center;
-  padding-top: 3%;
+  height: 100%;
+  border-radius: 10px;
+  margin-top: 5%;
 }
 
 #breakfast-ingredients,
 #breakfast-instructions,
 #lunch-instructions,
-#lunch-ingredients {
+#lunch-ingredients,
+#dinner-instructions,
+#dinner-ingredients {
   display: flex;
   justify-content: center;
+  background-color: #6c6ea0;
+  border-radius: 5px;
+  margin-top: 5%;
+  color: white;
+}
+
+.heart {
+  padding-top: 13px;
+  height: 17px;
+  width: 19px;
+  padding-left: 10px;
+}
+
+#breakfast-info,
+#lunch-info,
+#dinner-info,
+li {
+  font-family: Judson, serif;
+  padding: 0 1rem;
 }
