@@ -60,7 +60,7 @@ header {
 #preview-d {
   margin-top: 5px;
   height: 20px;
-  font-size: 18px;
+  font-size: 1.5rem;
 }
 
 #favorite-header {
@@ -101,4 +101,10 @@ img {
 li {
   font-family: Judson, serif;
   padding: 0 1rem;
+}
+
+#breakfast-text,
+#lunch-text,
+#dinner-text {
+  font-size: 1.3rem;
 }

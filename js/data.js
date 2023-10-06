@@ -1,9 +1,13 @@
 /* exported data */
 let data = {
   view: 'main',
-  breakfastEntries: [],
-  lunchEntries: [],
-  dinnerEntries: [],
+  breakfastFavorites: [],
+  lunchFavorites: [],
+  dinnerFavorites: [],
+  apiCallDate: '',
+  lastViewedBreakfast: [],
+  lastViewedLunch: [],
+  lastViewedDinner: [],
   notes: null
 };
 
