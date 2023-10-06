@@ -148,6 +148,10 @@ td {
   border-color: #012a36;
 }
 
-tr:nth-child(odd) {
+tr:nth-child(even) {
+  background-color: #9ad4d6;
+}
+
+th {
   background-color: #9ad4d6;
 }
