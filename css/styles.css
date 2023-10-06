@@ -137,11 +137,6 @@ table {
   text-align: center;
 }
 
-button {
-  display: flex;
-  justify-content: space-around;
-}
-
 tr:nth-child(odd) {
   background-color: #9ad4d6;
 }
