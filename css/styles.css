@@ -126,8 +126,6 @@ li {
   text-decoration: underline 1px;
   display: block;
   margin: 0;
-  display: flex;
-  justify-content: center;
 }
 
 #favorite-table-container {
@@ -140,8 +138,4 @@ table {
 
 tr:nth-child(odd) {
   background-color: #9ad4d6;
-}
-
-#mealInfo-button{
-
 }

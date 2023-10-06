@@ -27,10 +27,19 @@ const $favoriteHeader = document.querySelector('#header-favorite-btn');
 const $favoritePage = document.querySelector('#favorite-page');
 const $mainPage = document.querySelector('#main-page');
 const $dropdownMeal = document.querySelector('#dropdown-meal');
+const $breakfastTable = document.querySelector('#breakfast');
+const $lunchTable = document.querySelector('#lunch');
+const $dinnerTable = document.querySelector('#dinner');
 
 const lastApiCallTime = data.apiCallDate;
 const currentTime = new Date().getTime();
 const lastCallTime = currentTime - (lastApiCallTime || 0);
+let breakfastCounter = 0;
+let lunchCounter = 0;
+let dinnerCounter = 0;
+let breakfastSelected = false;
+let lunchSelected = false;
+let dinnerSelected = false;
 
 const obj = {
   breakfastData: [],
@@ -297,9 +306,29 @@ $chefPhoto.addEventListener('click', function () {
 }
 );
 
-$dropdownMeal.addEventListener('change', function (event) {
-  console.log($dropdownMeal.value);
-  // if ($dropdownMeal.textContent === )
+$dropdownMeal.addEventListener('change', function () {
+
+  if ($dropdownMeal.value === 'BREAKFAST') {
+    $breakfastTable.setAttribute('class', '');
+    $lunchTable.setAttribute('class', 'hidden');
+    $dinnerTable.setAttribute('class', 'hidden');
+    breakfastCounter++;
+  } if ($dropdownMeal.value === 'LUNCH') {
+    $breakfastTable.setAttribute('class', 'hidden');
+    $dinnerTable.setAttribute('class', 'hidden');
+    $lunchTable.setAttribute('class', '');
+    lunchCounter++;
+  } if ($dropdownMeal.value === 'DINNER') {
+    $breakfastTable.setAttribute('class', 'hidden');
+    $lunchTable.setAttribute('class', 'hidden');
+    $dinnerTable.setAttribute('class', '');
+    dinnerCounter++;
+  } if ($dropdownMeal.value === 'Click me to choose favorites') {
+    $breakfastTable.setAttribute('class', 'hidden');
+    $lunchTable.setAttribute('class', 'hidden');
+    $dinnerTable.setAttribute('class', 'hidden');
+  }
+  renderEntry();
 });
 
 function breakfastIngredientsLoop() {
@@ -350,24 +379,87 @@ function dinnerIngredientsLoop() {
   }
 }
 
+function renderEntry() {
+
+  if (breakfastCounter === 1 && !breakfastSelected) {
+    renderBreakfastEntry();
+    breakfastSelected = true;
+  }
+  if (lunchCounter === 1 && !lunchSelected) {
+    renderLunchEntry();
+    lunchSelected = true;
+  }
+  if (dinnerCounter === 1 && !dinnerSelected) {
+    renderDinnerEntry();
+    dinnerSelected = true;
+  }
+}
+
 function renderBreakfastEntry() {
-  // for (let i = 0; i < data.breakfastFavorites.length; i++) {
-  const $tr = document.createElement('tr');
-  const $td = document.createElement('td');
-  const $textContent = document.createTextNode(data.breakfastFavorites.title);
-  const $tdTwo = document.createElement('td');
-  const $buttonMealInfo = document.createElement('button');
-  const $buttonMealInfoText = document.createTextNode('MEAL INFO');
-  const $buttonMealNotes = document.createElement('button');
-  const $buttonMealNotesText = document.createTextNode('NOTES');
-  $tr.appendChild($td);
-  $td.appendChild($textContent);
-  $tr.appendChild($tdTwo);
-  $tdTwo.appendChild($buttonMealInfo);
-  $buttonMealInfo.appendChild($buttonMealInfoText);
-  $tdTwo.appendChild($buttonMealNotes);
-  $buttonMealNotes.appendChild($buttonMealNotesText);
-  // }
+
+  for (let i = 0; i < data.breakfastFavorites.length; i++) {
+    const $tr = document.createElement('tr');
+    const $td = document.createElement('td');
+    const $textContent = document.createTextNode(data.breakfastFavorites[i].title);
+    const $tdTwo = document.createElement('td');
+    const $buttonMealInfo = document.createElement('button');
+    const $buttonMealInfoText = document.createTextNode('MEAL INFO');
+    const $buttonMealNotes = document.createElement('button');
+    const $buttonMealNotesText = document.createTextNode('NOTES');
+    $breakfastTable.appendChild($tr);
+    $tr.appendChild($td);
+    $td.appendChild($textContent);
+    $tr.appendChild($tdTwo);
+    $tdTwo.appendChild($buttonMealInfo);
+    $buttonMealInfo.appendChild($buttonMealInfoText);
+    $tdTwo.appendChild($buttonMealNotes);
+    $buttonMealNotes.appendChild($buttonMealNotesText);
+  }
+  return $breakfastTable;
+
+}
+
+function renderLunchEntry() {
+  for (let i = 0; i < data.lunchFavorites.length; i++) {
+    const $tr = document.createElement('tr');
+    const $td = document.createElement('td');
+    const $textContent = document.createTextNode(data.lunchFavorites[i].title);
+    const $tdTwo = document.createElement('td');
+    const $buttonMealInfo = document.createElement('button');
+    const $buttonMealInfoText = document.createTextNode('MEAL INFO');
+    const $buttonMealNotes = document.createElement('button');
+    const $buttonMealNotesText = document.createTextNode('NOTES');
+    $lunchTable.appendChild($tr);
+    $tr.appendChild($td);
+    $td.appendChild($textContent);
+    $tr.appendChild($tdTwo);
+    $tdTwo.appendChild($buttonMealInfo);
+    $buttonMealInfo.appendChild($buttonMealInfoText);
+    $tdTwo.appendChild($buttonMealNotes);
+    $buttonMealNotes.appendChild($buttonMealNotesText);
+  }
+  return $lunchTable;
+}
+function renderDinnerEntry() {
+  for (let i = 0; i < data.dinnerFavorites.length; i++) {
+    const $tr = document.createElement('tr');
+    const $td = document.createElement('td');
+    const $textContent = document.createTextNode(data.dinnerFavorites[i].title);
+    const $tdTwo = document.createElement('td');
+    const $buttonMealInfo = document.createElement('button');
+    const $buttonMealInfoText = document.createTextNode('MEAL INFO');
+    const $buttonMealNotes = document.createElement('button');
+    const $buttonMealNotesText = document.createTextNode('NOTES');
+    $dinnerTable.appendChild($tr);
+    $tr.appendChild($td);
+    $td.appendChild($textContent);
+    $tr.appendChild($tdTwo);
+    $tdTwo.appendChild($buttonMealInfo);
+    $buttonMealInfo.appendChild($buttonMealInfoText);
+    $tdTwo.appendChild($buttonMealNotes);
+    $buttonMealNotes.appendChild($buttonMealNotesText);
+  }
+  return $dinnerTable;
 }
 
 function viewSwap(string) {
