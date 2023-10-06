@@ -1,3 +1,4 @@
+const $chefPhoto = document.querySelector('#chef-photo');
 const $breakfastRow = document.querySelector('#breakfast-row');
 const $lunchRow = document.querySelector('#lunch-row');
 const $dinnerRow = document.querySelector('#dinner-row');
@@ -22,7 +23,10 @@ const $dinnerInfo = document.querySelector('#dinner-info');
 const $breakfastHeart = document.querySelector('#breakfast-heart');
 const $lunchHeart = document.querySelector('#lunch-heart');
 const $dinnerHeart = document.querySelector('#dinner-heart');
-const $favoriteHeader = document.querySelectorAll('#header-favorite-btn');
+const $favoriteHeader = document.querySelector('#header-favorite-btn');
+const $favoritePage = document.querySelector('#favorite-page');
+const $mainPage = document.querySelector('#main-page');
+const $dropdownMeal = document.querySelector('#dropdown-meal');
 
 const lastApiCallTime = data.apiCallDate;
 const currentTime = new Date().getTime();
@@ -285,7 +289,17 @@ $dinnerHeart.addEventListener('click', function (event) {
 });
 
 $favoriteHeader.addEventListener('click', function () {
+  viewSwap('favorites');
+});
 
+$chefPhoto.addEventListener('click', function () {
+  viewSwap('main');
+}
+);
+
+$dropdownMeal.addEventListener('change', function (event) {
+  console.log($dropdownMeal.value);
+  // if ($dropdownMeal.textContent === )
 });
 
 function breakfastIngredientsLoop() {
@@ -333,5 +347,36 @@ function dinnerIngredientsLoop() {
       $li.textContent = data.lastViewedDinner.extendedIngredients[j].original;
       $dinnerUl.appendChild($li);
     }
+  }
+}
+
+function renderBreakfastEntry() {
+  // for (let i = 0; i < data.breakfastFavorites.length; i++) {
+  const $tr = document.createElement('tr');
+  const $td = document.createElement('td');
+  const $textContent = document.createTextNode(data.breakfastFavorites.title);
+  const $tdTwo = document.createElement('td');
+  const $buttonMealInfo = document.createElement('button');
+  const $buttonMealInfoText = document.createTextNode('MEAL INFO');
+  const $buttonMealNotes = document.createElement('button');
+  const $buttonMealNotesText = document.createTextNode('NOTES');
+  $tr.appendChild($td);
+  $td.appendChild($textContent);
+  $tr.appendChild($tdTwo);
+  $tdTwo.appendChild($buttonMealInfo);
+  $buttonMealInfo.appendChild($buttonMealInfoText);
+  $tdTwo.appendChild($buttonMealNotes);
+  $buttonMealNotes.appendChild($buttonMealNotesText);
+  // }
+}
+
+function viewSwap(string) {
+  data.view = string;
+  if (string === 'main') {
+    $favoritePage.setAttribute('class', 'hidden');
+    $mainPage.setAttribute('class', 'container');
+  } else if (string === 'favorites') {
+    $mainPage.setAttribute('class', 'container hidden');
+    $favoritePage.setAttribute('class', 'container');
   }
 }
