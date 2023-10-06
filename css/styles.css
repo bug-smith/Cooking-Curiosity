@@ -134,6 +134,12 @@ li {
 
 table {
   width: 100%;
+  text-align: center;
+}
+
+button {
+  display: flex;
+  justify-content: space-around;
 }
 
 tr:nth-child(odd) {
