@@ -135,6 +135,17 @@ li {
 table {
   width: 100%;
   text-align: center;
+  border: solid 0.5px;
+  border-collapse: collapse;
+  border-color: #012a36;
+}
+
+tr,
+td {
+  text-align: center;
+  border: solid 0.5px;
+  border-collapse: collapse;
+  border-color: #012a36;
 }
 
 tr:nth-child(odd) {
