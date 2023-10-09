@@ -60,7 +60,7 @@ header {
 #preview-d {
   margin-top: 5px;
   height: 20px;
-  font-size: 18px;
+  font-size: 1.5rem;
 }
 
 #favorite-header {
@@ -101,4 +101,57 @@ img {
 li {
   font-family: Judson, serif;
   padding: 0 1rem;
+}
+
+#breakfast-text,
+#lunch-text,
+#dinner-text {
+  font-size: 1.3rem;
+}
+
+#favorite-dropdown {
+  background-color: #6c6ea0;
+  border-radius: 5px;
+  margin-top: 5%;
+  color: white;
+  height: 72.59px;
+}
+
+#dropdown-meal {
+  background-color: #6c6ea0;
+  border: 0;
+  font-size: 1.3rem;
+  appearance: none;
+  color: white;
+  text-decoration: underline 1px;
+  display: block;
+  margin: 0;
+}
+
+#favorite-table-container {
+  padding-top: 1.5rem;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+  border: solid 0.5px;
+  border-collapse: collapse;
+  border-color: #012a36;
+}
+
+tr,
+td {
+  text-align: center;
+  border: solid 0.5px;
+  border-collapse: collapse;
+  border-color: #012a36;
+}
+
+tr:nth-child(even) {
+  background-color: #9ad4d6;
+}
+
+th {
+  background-color: #9ad4d6;
 }
