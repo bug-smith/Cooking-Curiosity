@@ -37,9 +37,9 @@ const lastCallTime = currentTime - (lastApiCallTime || 0);
 let breakfastCounter = 0;
 let lunchCounter = 0;
 let dinnerCounter = 0;
-let breakfastSelected = false;
-let lunchSelected = false;
-let dinnerSelected = false;
+const breakfastSelected = false;
+const lunchSelected = false;
+const dinnerSelected = false;
 
 const obj = {
   breakfastData: [],
@@ -261,7 +261,7 @@ $lunchHeart.addEventListener('click', function (event) {
   const dupesView = data.lunchFavorites.some(item => {
     return item.id === data.lastViewedLunch.id;
   });
-  // console.log(dupes, dupesView);
+
   if (!dupes && !dupesView) {
     if (
       lastCallTime >= 24 * 60 * 60 * 1000 ||
@@ -299,6 +299,9 @@ $dinnerHeart.addEventListener('click', function (event) {
 
 $favoriteHeader.addEventListener('click', function () {
   viewSwap('favorites');
+  for (let i = 0; i < data.breakfastFavorites.length; i++) {
+    renderEntry(data.breakfastFavorites[i]);
+  }
 });
 
 $chefPhoto.addEventListener('click', function () {
@@ -328,7 +331,7 @@ $dropdownMeal.addEventListener('change', function () {
     $lunchTable.setAttribute('class', 'hidden');
     $dinnerTable.setAttribute('class', 'hidden');
   }
-  renderEntry();
+  // renderEntry();
 });
 
 function breakfastIngredientsLoop() {
@@ -379,88 +382,85 @@ function dinnerIngredientsLoop() {
   }
 }
 
-function renderEntry() {
+// function renderEntry() {
 
-  if (breakfastCounter === 1 && !breakfastSelected) {
-    renderBreakfastEntry();
-    breakfastSelected = true;
-  }
-  if (lunchCounter === 1 && !lunchSelected) {
-    renderLunchEntry();
-    lunchSelected = true;
-  }
-  if (dinnerCounter === 1 && !dinnerSelected) {
-    renderDinnerEntry();
-    dinnerSelected = true;
-  }
-}
+//   if (breakfastCounter === 1 && !breakfastSelected) {
+//     renderBreakfastEntry();
+//     breakfastSelected = true;
+//   }
+//   if (lunchCounter === 1 && !lunchSelected) {
+//     renderLunchEntry();
+//     lunchSelected = true;
+//   }
+//   if (dinnerCounter === 1 && !dinnerSelected) {
+//     renderDinnerEntry();
+//     dinnerSelected = true;
+//   }
+// }
 
-function renderBreakfastEntry() {
+function renderEntry(entry) {
 
-  for (let i = 0; i < data.breakfastFavorites.length; i++) {
-    const $tr = document.createElement('tr');
-    const $td = document.createElement('td');
-    const $textContent = document.createTextNode(data.breakfastFavorites[i].title);
-    const $tdTwo = document.createElement('td');
-    const $buttonMealInfo = document.createElement('button');
-    const $buttonMealInfoText = document.createTextNode('MEAL INFO');
-    const $buttonMealNotes = document.createElement('button');
-    const $buttonMealNotesText = document.createTextNode('NOTES');
-    $breakfastTable.appendChild($tr);
-    $tr.appendChild($td);
-    $td.appendChild($textContent);
-    $tr.appendChild($tdTwo);
-    $tdTwo.appendChild($buttonMealInfo);
-    $buttonMealInfo.appendChild($buttonMealInfoText);
-    $tdTwo.appendChild($buttonMealNotes);
-    $buttonMealNotes.appendChild($buttonMealNotesText);
-  }
-  return $breakfastTable;
+  const $tr = document.createElement('tr');
+  const $td = document.createElement('td');
+  const $textContent = document.createTextNode(entry.title);
+  const $tdTwo = document.createElement('td');
+  const $buttonMealInfo = document.createElement('button');
+  const $buttonMealInfoText = document.createTextNode('MEAL INFO');
+  const $buttonMealNotes = document.createElement('button');
+  const $buttonMealNotesText = document.createTextNode('NOTES');
+  $tr.appendChild($td);
+  $td.appendChild($textContent);
+  $tr.appendChild($tdTwo);
+  $tdTwo.appendChild($buttonMealInfo);
+  $buttonMealInfo.appendChild($buttonMealInfoText);
+  $tdTwo.appendChild($buttonMealNotes);
+  $buttonMealNotes.appendChild($buttonMealNotesText);
+  return $tr;
 
 }
 
-function renderLunchEntry() {
-  for (let i = 0; i < data.lunchFavorites.length; i++) {
-    const $tr = document.createElement('tr');
-    const $td = document.createElement('td');
-    const $textContent = document.createTextNode(data.lunchFavorites[i].title);
-    const $tdTwo = document.createElement('td');
-    const $buttonMealInfo = document.createElement('button');
-    const $buttonMealInfoText = document.createTextNode('MEAL INFO');
-    const $buttonMealNotes = document.createElement('button');
-    const $buttonMealNotesText = document.createTextNode('NOTES');
-    $lunchTable.appendChild($tr);
-    $tr.appendChild($td);
-    $td.appendChild($textContent);
-    $tr.appendChild($tdTwo);
-    $tdTwo.appendChild($buttonMealInfo);
-    $buttonMealInfo.appendChild($buttonMealInfoText);
-    $tdTwo.appendChild($buttonMealNotes);
-    $buttonMealNotes.appendChild($buttonMealNotesText);
-  }
-  return $lunchTable;
-}
-function renderDinnerEntry() {
-  for (let i = 0; i < data.dinnerFavorites.length; i++) {
-    const $tr = document.createElement('tr');
-    const $td = document.createElement('td');
-    const $textContent = document.createTextNode(data.dinnerFavorites[i].title);
-    const $tdTwo = document.createElement('td');
-    const $buttonMealInfo = document.createElement('button');
-    const $buttonMealInfoText = document.createTextNode('MEAL INFO');
-    const $buttonMealNotes = document.createElement('button');
-    const $buttonMealNotesText = document.createTextNode('NOTES');
-    $dinnerTable.appendChild($tr);
-    $tr.appendChild($td);
-    $td.appendChild($textContent);
-    $tr.appendChild($tdTwo);
-    $tdTwo.appendChild($buttonMealInfo);
-    $buttonMealInfo.appendChild($buttonMealInfoText);
-    $tdTwo.appendChild($buttonMealNotes);
-    $buttonMealNotes.appendChild($buttonMealNotesText);
-  }
-  return $dinnerTable;
-}
+// function renderLunchEntry() {
+//   for (let i = 0; i < data.lunchFavorites.length; i++) {
+//     const $tr = document.createElement('tr');
+//     const $td = document.createElement('td');
+//     const $textContent = document.createTextNode(data.lunchFavorites[i].title);
+//     const $tdTwo = document.createElement('td');
+//     const $buttonMealInfo = document.createElement('button');
+//     const $buttonMealInfoText = document.createTextNode('MEAL INFO');
+//     const $buttonMealNotes = document.createElement('button');
+//     const $buttonMealNotesText = document.createTextNode('NOTES');
+//     $lunchTable.appendChild($tr);
+//     $tr.appendChild($td);
+//     $td.appendChild($textContent);
+//     $tr.appendChild($tdTwo);
+//     $tdTwo.appendChild($buttonMealInfo);
+//     $buttonMealInfo.appendChild($buttonMealInfoText);
+//     $tdTwo.appendChild($buttonMealNotes);
+//     $buttonMealNotes.appendChild($buttonMealNotesText);
+//   }
+//   return $lunchTable;
+// }
+// function renderDinnerEntry() {
+//   for (let i = 0; i < data.dinnerFavorites.length; i++) {
+//     const $tr = document.createElement('tr');
+//     const $td = document.createElement('td');
+//     const $textContent = document.createTextNode(data.dinnerFavorites[i].title);
+//     const $tdTwo = document.createElement('td');
+//     const $buttonMealInfo = document.createElement('button');
+//     const $buttonMealInfoText = document.createTextNode('MEAL INFO');
+//     const $buttonMealNotes = document.createElement('button');
+//     const $buttonMealNotesText = document.createTextNode('NOTES');
+//     $dinnerTable.appendChild($tr);
+//     $tr.appendChild($td);
+//     $td.appendChild($textContent);
+//     $tr.appendChild($tdTwo);
+//     $tdTwo.appendChild($buttonMealInfo);
+//     $buttonMealInfo.appendChild($buttonMealInfoText);
+//     $tdTwo.appendChild($buttonMealNotes);
+//     $buttonMealNotes.appendChild($buttonMealNotesText);
+//   }
+//   return $dinnerTable;
+// }
 
 function viewSwap(string) {
   data.view = string;
