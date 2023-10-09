@@ -300,7 +300,7 @@ $dinnerHeart.addEventListener('click', function (event) {
 $favoriteHeader.addEventListener('click', function () {
   viewSwap('favorites');
   for (let i = 0; i < data.breakfastFavorites.length; i++) {
-    renderEntry(data.breakfastFavorites[i]);
+    $breakfastTable.appendChild(renderEntry(data.breakfastFavorites[i]));
   }
 });
 
