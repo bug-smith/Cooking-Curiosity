@@ -34,6 +34,12 @@ const $dinnerTable = document.querySelector('#dinner');
 const lastApiCallTime = data.apiCallDate;
 const currentTime = new Date().getTime();
 const lastCallTime = currentTime - (lastApiCallTime || 0);
+let breakfastCounter = 0;
+let lunchCounter = 0;
+let dinnerCounter = 0;
+let breakfastSelected = false;
+let lunchSelected = false;
+let dinnerSelected = false;
 
 const obj = {
   breakfastData: [],
@@ -293,18 +299,6 @@ $dinnerHeart.addEventListener('click', function (event) {
 
 $favoriteHeader.addEventListener('click', function () {
   viewSwap('favorites');
-  $breakfastTable.setAttribute('class', 'hidden');
-  $lunchTable.setAttribute('class', 'hidden');
-  $dinnerTable.setAttribute('class', 'hidden');
-  for (let i = 0; i < data.breakfastFavorites.length; i++) {
-    $breakfastTable.appendChild(renderEntry(data.breakfastFavorites[i]));
-  }
-  for (let i = 0; i < data.lunchFavorites.length; i++) {
-    $lunchTable.appendChild(renderEntry(data.lunchFavorites[i]));
-  }
-  for (let i = 0; i < data.dinnerFavorites.length; i++) {
-    $dinnerTable.appendChild(renderEntry(data.dinnerFavorites[i]));
-  }
 });
 
 $chefPhoto.addEventListener('click', function () {
@@ -318,22 +312,23 @@ $dropdownMeal.addEventListener('change', function () {
     $breakfastTable.setAttribute('class', '');
     $lunchTable.setAttribute('class', 'hidden');
     $dinnerTable.setAttribute('class', 'hidden');
-
+    breakfastCounter++;
   } if ($dropdownMeal.value === 'LUNCH') {
     $breakfastTable.setAttribute('class', 'hidden');
     $dinnerTable.setAttribute('class', 'hidden');
     $lunchTable.setAttribute('class', '');
-
+    lunchCounter++;
   } if ($dropdownMeal.value === 'DINNER') {
     $breakfastTable.setAttribute('class', 'hidden');
     $lunchTable.setAttribute('class', 'hidden');
     $dinnerTable.setAttribute('class', '');
-
+    dinnerCounter++;
   } if ($dropdownMeal.value === 'Click me to choose favorites') {
     $breakfastTable.setAttribute('class', 'hidden');
     $lunchTable.setAttribute('class', 'hidden');
     $dinnerTable.setAttribute('class', 'hidden');
   }
+  renderEntryDedupe();
 });
 
 function breakfastIngredientsLoop() {
@@ -384,6 +379,28 @@ function dinnerIngredientsLoop() {
   }
 }
 
+function renderEntryDedupe() {
+
+  if (breakfastCounter === 1 && !breakfastSelected) {
+    breakfastSelected = true;
+    for (let i = 0; i < data.breakfastFavorites.length; i++) {
+      $breakfastTable.appendChild(renderEntry(data.breakfastFavorites[i]));
+    }
+  }
+  if (lunchCounter === 1 && !lunchSelected) {
+    lunchSelected = true;
+    for (let i = 0; i < data.lunchFavorites.length; i++) {
+      $lunchTable.appendChild(renderEntry(data.lunchFavorites[i]));
+    }
+  }
+  if (dinnerCounter === 1 && !dinnerSelected) {
+    dinnerSelected = true;
+    for (let i = 0; i < data.dinnerFavorites.length; i++) {
+      $dinnerTable.appendChild(renderEntry(data.dinnerFavorites[i]));
+    }
+  }
+}
+
 function renderEntry(entry) {
 
   const $tr = document.createElement('tr');
@@ -404,6 +421,49 @@ function renderEntry(entry) {
   return $tr;
 
 }
+
+// function renderLunchEntry() {
+//   for (let i = 0; i < data.lunchFavorites.length; i++) {
+//     const $tr = document.createElement('tr');
+//     const $td = document.createElement('td');
+//     const $textContent = document.createTextNode(data.lunchFavorites[i].title);
+//     const $tdTwo = document.createElement('td');
+//     const $buttonMealInfo = document.createElement('button');
+//     const $buttonMealInfoText = document.createTextNode('MEAL INFO');
+//     const $buttonMealNotes = document.createElement('button');
+//     const $buttonMealNotesText = document.createTextNode('NOTES');
+//     $lunchTable.appendChild($tr);
+//     $tr.appendChild($td);
+//     $td.appendChild($textContent);
+//     $tr.appendChild($tdTwo);
+//     $tdTwo.appendChild($buttonMealInfo);
+//     $buttonMealInfo.appendChild($buttonMealInfoText);
+//     $tdTwo.appendChild($buttonMealNotes);
+//     $buttonMealNotes.appendChild($buttonMealNotesText);
+//   }
+//   return $lunchTable;
+// }
+// function renderDinnerEntry() {
+//   for (let i = 0; i < data.dinnerFavorites.length; i++) {
+//     const $tr = document.createElement('tr');
+//     const $td = document.createElement('td');
+//     const $textContent = document.createTextNode(data.dinnerFavorites[i].title);
+//     const $tdTwo = document.createElement('td');
+//     const $buttonMealInfo = document.createElement('button');
+//     const $buttonMealInfoText = document.createTextNode('MEAL INFO');
+//     const $buttonMealNotes = document.createElement('button');
+//     const $buttonMealNotesText = document.createTextNode('NOTES');
+//     $dinnerTable.appendChild($tr);
+//     $tr.appendChild($td);
+//     $td.appendChild($textContent);
+//     $tr.appendChild($tdTwo);
+//     $tdTwo.appendChild($buttonMealInfo);
+//     $buttonMealInfo.appendChild($buttonMealInfoText);
+//     $tdTwo.appendChild($buttonMealNotes);
+//     $buttonMealNotes.appendChild($buttonMealNotesText);
+//   }
+//   return $dinnerTable;
+// }
 
 function viewSwap(string) {
   data.view = string;
